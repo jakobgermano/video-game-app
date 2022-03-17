@@ -1,17 +1,20 @@
 import './App.css';
-import Games from './Games'
-
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import LoginForm from './features/LoginForm';
+import { loginUser, logoutUser } from './features/userSlice';
 
 
 function App() {
+  const userState = useSelector((state) => state.user.username)
+  const dispatch = useDispatch()
 
   
-  
+
   return (
-    <div className="App">
-   <Games/>
+    <div>
       
-
+      
     </div>
   );
 }
