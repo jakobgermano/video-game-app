@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useState } from "react";
 import { loginUser } from './userSlice';
@@ -40,7 +40,7 @@ function LoginForm(){
     return(
         <>
         <div id = "welcomeContainer">
-            <h1 id="welcome">Welcome to Rezy</h1>
+            <h1 id="welcome">Welcome to GameBooks</h1>
             <div id = "login">
                 <h4>Login to your account</h4>
                 <form onSubmit = {handleSubmit}>
@@ -69,4 +69,4 @@ function LoginForm(){
 }
 
 
-export default LoginForm
+export default LoginForm;
