@@ -1,4 +1,5 @@
 class GamesController < ApplicationController
+    skip_before_action :authorize
     def index
         games = Game.all
         render json: games
@@ -9,13 +10,13 @@ class GamesController < ApplicationController
         render json: game 
     end
 
-    # def update
-    #     game = Game.find(params[:id])
-    #     if @current_user.id == game.user_id
-    #     game.update(game_params)
-    #     render json: game
-    #     end
-    # end
+    def update
+        game = Game.find(params[:id])
+        if @current_user.id == game.user_id
+        game.update(game_params)
+        render json: game
+        end
+    end
 
     private 
 
