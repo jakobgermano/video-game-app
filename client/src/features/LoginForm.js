@@ -1,9 +1,5 @@
 import React from "react";
-// import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux';
 import { useState } from "react";
-import { loginUser } from './userSlice';
-//import { logoutUser } from './userSlice';
 import SignUpForm from "./SignupForm";
 
 function LoginForm(){
@@ -12,9 +8,8 @@ function LoginForm(){
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
 
-    //const userState = useSelector((state) => state.user.username)
+    
 
-    const dispatch = useDispatch()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -29,7 +24,7 @@ function LoginForm(){
             })
         }).then(r => {
             if(r.ok){
-            r.json().then(dispatch(loginUser(username))).then(setUsername("")).then(setPassword(""))
+            r.json().then(user => setUser(user)).then(setUsername('')).then(setPassword(''))
             }
             else {
                 r.json().then(error => setError(error.error))

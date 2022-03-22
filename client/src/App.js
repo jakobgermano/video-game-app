@@ -1,25 +1,38 @@
 import './App.css';
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import LoginForm from './features/LoginForm';
-import { loginUser, logoutUser } from './features/userSlice';
+// import { logoutUser } from './features/userSlice';
+
+import {useState, useEffect} from 'react'
 
 
 function App() {
-  const userState = useSelector((state) => state.user.username)
-  const dispatch = useDispatch()
+  const [user, setUser] = useState(null)
+  
+  //keeps person signed in on refresh
+  useEffect(() => {
+    fetch('/me').then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    })
+  }, []);
 
+  //fetch request for deleting
   function handleLogoutClick(){
     fetch('/logout', {
       method: 'DELETE'
     })
-      .then(r => dispatch(logoutUser))
+      .then(r => setUser(null))
   }
+
+  //renders login screen if user is not logged in 
+  if (!user) return <LoginForm setUser = {setUser}/>
 
   return (
     <div>
        <h1>App</h1>
-        <LoginForm />
         <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
     </div>
   );
