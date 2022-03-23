@@ -3,6 +3,7 @@ import { useState } from "react";
 import SignUpForm from "./SignupForm";
 
 function LoginForm(){
+    const [user, setUser] = useState("")
     //fetch to /login route, method POST to create a user session existing on login
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")

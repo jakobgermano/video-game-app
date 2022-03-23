@@ -1,26 +1,19 @@
-import { creatAsyncThunk, createSlice } from  '@reduxjs/toolkit'
+// import { createAsyncThunk, createSlice } from  '@reduxjs/toolkit'
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
-const initialState = {
-    games: [],
-}
-
-//asyncthunkfunction
-export const fetchGames = creatAsyncThunk(
-    'game list',
-    async () => {
-        const response = await (await fetch('/games')).json()
-        return response
-    }
-)
-
-export const gameReducer = createSlice({
-    name: 'games', 
-    initialState: initialState,
-    reducers: {
-
-    }
-
-})
+ //auto-generates an "API slice" when using createApi()
+    //in this case, useGetAllRestaurantsQuery
+    export const gameApi = createApi({
+        reducerPath: 'gameApi',
+        baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/'}),
+        endpoints: (builder) => ({
+            getAllGames: builder.query({
+                query: () => `/games`,
+            }),
+        }),
+    })
+    
+    export const {useGetAllGamesQuery} = gameApi
 
 // export const gameReducer = createSlice({
 //     name: 'gameStatus',
@@ -66,6 +59,3 @@ export const gameReducer = createSlice({
 //   export {populate, removeGame, createGame, updateGame}
 //   export default gameReducer.reducer
 
-export const {createGame} = gameReducer.actions
-export const gameList = (state) => state.games
-export default gameReducer.reducer

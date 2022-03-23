@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+import Games from './Games';
 // import { useDispatch } from 'react-redux';
 import LoginForm from './features/LoginForm';
 // import { logoutUser } from './features/userSlice';
@@ -33,7 +34,9 @@ function App() {
   return (
     <div>
        <h1>App</h1>
+       
         <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
+      <Games/>
     </div>
   );
 }
