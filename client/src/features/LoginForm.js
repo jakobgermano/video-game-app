@@ -2,8 +2,7 @@ import React from "react";
 import { useState } from "react";
 import SignUpForm from "./SignupForm";
 
-function LoginForm(){
-    const [user, setUser] = useState("")
+function LoginForm({setUser}){
     //fetch to /login route, method POST to create a user session existing on login
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -57,7 +56,7 @@ function LoginForm(){
                     <button type = "submit" >Login</button>
                 </form>
                 <h4>Need to create an account?</h4>
-                <SignUpForm />
+                <SignUpForm setUser={setUser}/>
             </div>
         </div>
         </>

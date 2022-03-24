@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
-import { loginUser } from './userSlice';
-import { useDispatch } from 'react-redux';
 
-function SignUpForm(){
+
+function SignUpForm({setUser}){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
-    const dispatch = useDispatch()
 
     function handleSubmit(e){
         e.preventDefault()
@@ -18,13 +16,11 @@ function SignUpForm(){
             },
             body: JSON.stringify({username, password, password_confirmation: passwordConfirmation})
         }).then(r => {
-            r.json().then(dispatch(loginUser(username)))
+            (r.json().then(user => setUser(user)))
         }).then(
             setUsername('')
         )
-
     }
-
 
     return(
         <>

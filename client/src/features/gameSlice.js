@@ -1,14 +1,17 @@
 // import { createAsyncThunk, createSlice } from  '@reduxjs/toolkit'
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
-
+import {user} from './app.js'
  //auto-generates an "API slice" when using createApi()
-    //in this case, useGetAllRestaurantsQuery
+    //in this case, useGetAllQuery
     export const gameApi = createApi({
         reducerPath: 'gameApi',
         baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3000/'}),
         endpoints: (builder) => ({
             getAllGames: builder.query({
                 query: () => `/games`,
+            }),
+            getGamesByUser: builder.query({
+            query: () => `/users/${user.id}`,
             }),
         }),
     })

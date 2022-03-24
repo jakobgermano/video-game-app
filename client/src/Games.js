@@ -1,7 +1,4 @@
-import React, { useEffect } from "react";
 import GameCard from "./GameCard";
-import { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
 import {useGetAllGamesQuery} from "./features/gameSlice";
 
 function Games(){
@@ -13,7 +10,7 @@ function Games(){
         <>
             <div>
                 
-                <h3>Games you own</h3>
+                <h1>Games you own</h1>
                 {isLoading && <h2>...loading</h2>}
                 {error && <h2>Something went wrong</h2>}
                 {data?.map((g) => 
