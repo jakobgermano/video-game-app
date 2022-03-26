@@ -1,9 +1,18 @@
 import GameCard from "./GameCard";
-import {useGetAllGamesQuery} from "./features/gameSlice";
+import {useEffect} from 'react'
 
-function Games(){
 
-    const { data, error, isLoading, isSuccess }= useGetAllGamesQuery();
+function Games({user, games, setGames, removeGames}){
+
+    useEffect(()=> {
+        fetch(`/users/${user.id}`)
+        .then((r) => r.json())
+        .then((g) => {
+            setGames(g.games)
+        })
+    }, [])
+
+    
     
 
     return(
@@ -11,10 +20,8 @@ function Games(){
             <div>
                 
                 <h1>Games you own</h1>
-                {isLoading && <h2>...loading</h2>}
-                {error && <h2>Something went wrong</h2>}
-                {data?.map((g) => 
-                <GameCard key = {g.id} game = {g} isSuccess = {isSuccess}/>
+                {games?.map((g) => 
+                <GameCard key = {g.id} game = {g} removeGames={removeGames} />
                 )}
             </div>
         </>

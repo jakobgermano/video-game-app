@@ -1,15 +1,13 @@
 import './App.css';
 import React from 'react';
 import Games from './Games';
-// import { useDispatch } from 'react-redux';
 import LoginForm from './features/LoginForm';
-// import { logoutUser } from './features/userSlice';
-
 import {useState, useEffect} from 'react'
 
 
 function App() {
   const [user, setUser] = useState(null)
+  const [games, setGames] = ([])
   
   //keeps person signed in on refresh
   useEffect(() => {
@@ -20,12 +18,16 @@ function App() {
     })
   }, []);
 
-  //fetch request for deleting
+  //fetch request for loging out 
   function handleLogoutClick(){
     fetch('/logout', {
       method: 'DELETE'
     })
       .then(r => setUser(null))
+  }
+
+  function removeGames(game) {
+    setGames((games) => games.filter(g => g.id !== game.id))
   }
 
   //renders login screen if user is not logged in 
@@ -35,7 +37,7 @@ function App() {
     <div>
        
         <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
-      <Games/>
+      <Games removeGames={removeGames} games = {games} user={user} setGames={setGames}/>
     </div>
   );
 }

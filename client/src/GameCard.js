@@ -4,21 +4,19 @@ import EditForm from './features/EditForm'
 
 
 
-function GameCard({game, error, isLoading, isSuccess}) {
+function GameCard({game, removeGames}) {
     const [editForm, setEditForm] = useState(false)
 
-//     function handleDelete(game) {
-//         fetch(`/games/${games.id}`, 
-//      {method: "DELETE"}).then(r => {
-//        removeGame(game)
-//      })
-//    }
+    function handleDelete(game) {
+        fetch(`/games/${game.id}`, 
+     {method: "DELETE"}).then(r => {
+       removeGames(game)
+     })
+   }
 
     return(
         <div>
-            {isLoading && <h2>...loading</h2>}
-            {error && <h2>Something went wrong</h2>}
-            {isSuccess && 
+            
             <div>
             <h2>name:{game.name}</h2>
             <br></br>
@@ -28,7 +26,7 @@ function GameCard({game, error, isLoading, isSuccess}) {
             <button onClick={e => handleDelete(game)}></button>
             <button onClick={e => setEditForm(!editForm)}></button>
             {editForm ? <EditForm game={game}/> : null}
-        </div>}
+        </div>
         </div>
         
             
