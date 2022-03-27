@@ -9,12 +9,12 @@ function SignUpForm({setUser}){
 
     function handleSubmit(e){
         e.preventDefault()
-        fetch('/users',{
+        fetch("/signup",{
             method: "POST", 
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({username, password, password_confirmation: passwordConfirmation})
+            body: JSON.stringify({user: {username, password, password_confirmation: passwordConfirmation}})
         }).then(r => {
             (r.json().then(user => setUser(user)))
         }).then(

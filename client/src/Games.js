@@ -1,19 +1,8 @@
 import GameCard from "./GameCard";
-import {useEffect} from 'react'
+import React from 'react'
 
 
-function Games({user, games, setGames, removeGames}){
-
-    useEffect(()=> {
-        fetch(`/users/${user.id}`)
-        .then((r) => r.json())
-        .then((g) => {
-            setGames(g.games)
-        })
-    }, [])
-
-    
-    
+function Games({games, removeGames}){
 
     return(
         <>

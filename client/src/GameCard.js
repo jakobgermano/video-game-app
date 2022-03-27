@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import EditForm from './features/EditForm'
+import EditForm from './EditForm'
 
 
 
