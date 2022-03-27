@@ -4,8 +4,21 @@ import EditForm from './EditForm'
 
 
 
-function GameCard({game, removeGames}) {
+function GameCard({games, game, removeGames, setGames}) {
     const [editForm, setEditForm] = useState(false)
+
+    function editGame(game) {
+        const edited = games.map(g => {
+            if (game.id === g.id) {
+                return game
+            }
+            return g
+        })
+        setGames(edited)
+       
+    }
+
+
 
     function handleDelete(game) {
         fetch(`/games/${game.id}`, 
@@ -23,9 +36,9 @@ function GameCard({game, removeGames}) {
             <h2>Genre:{game.genre}</h2>
             <br></br>
             <h2>Rating:{game.rating}</h2>
-            <button onClick={e => handleDelete(game)}></button>
-            <button onClick={e => setEditForm(!editForm)}></button>
-            {editForm ? <EditForm game={game}/> : null}
+            <button onClick={e => handleDelete(game)}>Delete:</button>
+            <button onClick={e => setEditForm(!editForm)}>Update:</button>
+            {editForm ? <EditForm game={game} editGame={editGame}/> : null}
         </div>
         </div>
         

@@ -1,9 +1,13 @@
 import './App.css';
-import React from 'react';
+import React, { Fragment } from 'react';
 import Games from './Games';
 import LoginForm from './LoginForm';
 import {useState, useEffect} from 'react'
 import GameForm from './GameForm'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import NavBar from './NavBar';
+import About from './About';
+
 
 
 function App() {
@@ -19,14 +23,7 @@ function App() {
     })
   }, []);
 
-// fetchs to index in games for "all gamese"
-  useEffect(()=> {
-    fetch(`/games`)
-    .then((r) => r.json())
-    .then((g) => {
-        setGames(g.games)
-    })
-}, [])
+
 
   //fetch request for loging out 
   function handleLogoutClick(){
@@ -40,6 +37,7 @@ function App() {
     setGames((games) => games.filter(g => g.id !== game.id))
   }
 
+//function for adding games
   function addGame(game) {
     setGames([...games, game])
 
@@ -50,10 +48,20 @@ function App() {
 
   return (
     <div>
-       
-        <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
-      <Games removeGames={removeGames} games = {games} user={user} setGames={setGames}/>
-      <GameForm addGame={addGame} user={user}/>
+      <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
+      <Router>
+      <Fragment>
+      <NavBar/>
+      <Routes>
+      <Route exact path="/" element={<Games removeGames={removeGames} games = {games} user={user} setGames={setGames}/>}>
+      </Route>
+      <Route exact path="/GameForm" element={<GameForm addGame={addGame} user={user}/>}>
+      </Route>
+      <Route exact path="/About" element={<About/>}>
+      </Route>
+      </Routes>
+      </Fragment>
+      </Router>
     </div>
   );
 }
