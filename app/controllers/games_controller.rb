@@ -2,12 +2,12 @@ class GamesController < ApplicationController
     skip_before_action :authorize
     def index
         games = Game.all
-        render json: games
+        render json: games, include: :reviews
     end
 
     def create
         game = Game.create(game_params)
-        render json: game 
+        render json: game
     end
 
     def update
@@ -16,6 +16,11 @@ class GamesController < ApplicationController
         game.update(game_params)
         render json: game
         end
+    end
+
+    def destroy
+        game = Game.find(params[:id])
+        game.destroy
     end
 
     private 

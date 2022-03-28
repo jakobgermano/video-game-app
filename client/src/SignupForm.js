@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Button } from '@mui/material';
 
 
 function SignUpForm({setUser}){
@@ -50,7 +51,7 @@ function SignUpForm({setUser}){
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                 autoComplete="current-password"
                 />
-                <button>Create</button>
+                <Button type = "submit" variant = "contained" size = "small">Create</Button>
             </form>
             </div>
         </>

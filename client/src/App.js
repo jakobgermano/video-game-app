@@ -7,12 +7,15 @@ import GameForm from './GameForm'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from './NavBar';
 import About from './About';
+import { Button } from '@mui/material';
 
 
 
 function App() {
   const [user, setUser] = useState(null)
   const [games, setGames] = useState([])
+
+  
   
   //keeps person signed in on refresh
   useEffect(() => {
@@ -32,6 +35,7 @@ function App() {
     })
       .then(r => setUser(null))
   }
+
   //function for removing games 
   function removeGames(game) {
     setGames((games) => games.filter(g => g.id !== game.id))
@@ -48,7 +52,7 @@ function App() {
 
   return (
     <div>
-      <button id = "logout" onClick = {handleLogoutClick}>Logout</button>
+      <Button id = "logout" onClick = {handleLogoutClick} variant ="contained" size = "medium" color="error">Logout</Button>
       <Router>
       <Fragment>
       <NavBar/>

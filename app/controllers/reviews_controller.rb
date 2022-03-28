@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
     def index
         reviews = Review.all
-        render json: reviews
+        render json: reviews, include: :games
     end
 end
