@@ -14,10 +14,7 @@ function EditForm({game, editGame}) {
       fetch(`/games/${game.id}`, {
           method: "PATCH",
           headers: {
-              name, 
-              genre,
-              rating,
-              game_id: game.id
+            "Content-type": "application/json",
           },
           body: JSON.stringify({
               name,

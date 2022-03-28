@@ -4,7 +4,17 @@ import {useEffect} from 'react'
 
 
 function Games({games, removeGames, setGames, user}){
-
+    
+    function editGame(game) {
+        const edited = games.map(g => {
+            if (game.id === g.id) {
+                return game
+            }
+            return g
+        })
+        setGames(edited)
+       
+    }
 
     useEffect(()=> {
         fetch(`/users/${user.id}`)
@@ -20,7 +30,7 @@ function Games({games, removeGames, setGames, user}){
                 
                 <h1>Games you own</h1>
                 {games?.map((g) => 
-                <GameCard key = {g.id} game = {g} removeGames={removeGames} setGames={setGames}/>
+                <GameCard editGame={editGame} key = {g.id} game = {g} removeGames={removeGames} setGames={setGames}/>
                 )}
             </div>
         </>

@@ -2,21 +2,19 @@ import React, {useState} from "react";
 import EditForm from './EditForm'
 
 
-
-
-function GameCard({games, game, removeGames, setGames}) {
+function GameCard({editGame, game, removeGames}) {
     const [editForm, setEditForm] = useState(false)
 
-    function editGame(game) {
-        const edited = games.map(g => {
-            if (game.id === g.id) {
-                return game
-            }
-            return g
-        })
-        setGames(edited)
+    // function editGame(game) {
+    //     const edited = games.map(g => {
+    //         if (game.id === g.id) {
+    //             return game
+    //         }
+    //         return g
+    //     })
+    //     setGames(edited)
        
-    }
+    // }
 
 
 
