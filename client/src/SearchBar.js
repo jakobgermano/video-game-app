@@ -9,7 +9,12 @@ function SearchBar({games}) {
         const newFilter = games.filter((g) => {
             return g.name.includes(searchWord);
         });
+
+        if (searchWord === "") {
+            setFilteredData([])
+        } else {
         setFilteredData(newFilter);
+        }
     };
 
     return(

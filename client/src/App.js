@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react'
 import GameForm from './GameForm'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from './NavBar';
-import About from './About';
+import GameCounter from './GameCounter';
 import { Button } from '@mui/material';
 
 
@@ -61,7 +61,7 @@ function App() {
       </Route>
       <Route exact path="/GameForm" element={<GameForm addGame={addGame} user={user}/>}>
       </Route>
-      <Route exact path="/About" element={<About/>}>
+      <Route exact path="/GameCounter" element={<GameCounter/>}>
       </Route>
       </Routes>
       </Fragment>

@@ -42,18 +42,24 @@ function LoginForm({setUser}){
                     {error ? <span>{error}</span> : <span></span>}
                     <br></br>
                     <label>Username:</label>
+                    <div className="usernameInput">
                     <input 
                     type = "text" 
                     id = "username"
                     value = {username}
                     onChange = {e => setUsername(e.target.value)}/>
+                    </div>
                     <br></br>
                     <label>Password: </label>
+                    <div className="passwordInput">
                     <input
                     type = "password"
                     value = {password}
                     onChange = {e => setPassword(e.target.value)}/>
+                    </div>
+                    <div className="loginButton">
                     <button type = "submit" >Login</button>
+                    </div>
                 </form>
                 <h4>Need to create an account?</h4>
                 <SignUpForm setUser={setUser}/>
