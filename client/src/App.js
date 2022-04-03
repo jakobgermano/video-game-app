@@ -1,12 +1,14 @@
-import './App.css';
+import './index.css';
 import React, { Fragment } from 'react';
-import Games from './Games';
-import LoginForm from './LoginForm';
+import Games from './features/Games';
+import LoginForm from './features/LoginForm';
 import {useState, useEffect} from 'react'
-import GameForm from './GameForm'
+import GameForm from './features/GameForm'
+import ReviewForm from './ReviewForm'
+import Reviews from './Reviews'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
-import NavBar from './NavBar';
-import GameCounter from './GameCounter';
+import NavBar from './features/NavBar';
+import GameCounter from './features/GameCounter';
 import { Button } from '@mui/material';
 
 
@@ -14,6 +16,7 @@ import { Button } from '@mui/material';
 function App() {
   const [user, setUser] = useState(null)
   const [games, setGames] = useState([])
+  const [reviews, setReviews] = useState([])
 
   
   
@@ -41,6 +44,10 @@ function App() {
     setGames((games) => games.filter(g => g.id !== game.id))
   }
 
+  function addReview(review){
+    setReviews([...reviews, review])
+  }
+
 //function for adding games
   function addGame(game) {
     setGames([...games, game])
@@ -57,6 +64,10 @@ function App() {
       <Fragment>
       <NavBar/>
       <Routes>
+      <Route exact path="Reviews" element={<Reviews reviews={reviews} setReviews={setReviews}/>}>    
+      </Route>
+      <Route exact path="ReviewForm" element={<ReviewForm reviews={reviews} addReview={addReview}/>}>    
+      </Route>
       <Route exact path="/" element={<Games removeGames={removeGames} games = {games} user={user} setGames={setGames}/>}>
       </Route>
       <Route exact path="/GameForm" element={<GameForm addGame={addGame} user={user}/>}>

@@ -17,11 +17,16 @@ function SearchBar({games}) {
         }
     };
 
+    
+
     return(
         <div className="search">
+            <form >
+                <button type="submit">Submit</button>
             <div className="searchInputs">
                 <input type="text" onChange={handleSearch}/>
             </div>
+            </form>
             {filteredData.length != 0 && (
             <div className="dataresult">
                 {filteredData.map((g) => {
@@ -31,7 +36,9 @@ function SearchBar({games}) {
             </div>
             )}
         </div>
+        
     );
+    
 }
 
 export default SearchBar;

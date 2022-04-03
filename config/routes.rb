@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :users
   resources :games
   resources :reviews
-  get "filter", to:"games#filter"
+  get "/filter", to: "games#filter"
   get "/me", to: "users#show"
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

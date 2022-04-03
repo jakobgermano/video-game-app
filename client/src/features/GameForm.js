@@ -29,6 +29,7 @@ function GameForm({user, addGame}) {
     return(
         <div>
             <h1>Add Game</h1>
+            <div className="formContainer">
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input type="text" id="name" value={name} onChange={e => setName(e.target.value)}/>
@@ -38,6 +39,7 @@ function GameForm({user, addGame}) {
                 <input type="text" id="rating" value={rating} onChange={e => setRating(e.target.value)}/>
                 <input type="submit"/>
             </form>
+            </div>
         </div>
     )
 }

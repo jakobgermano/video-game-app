@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import EditForm from './EditForm'
 import { Button } from '@mui/material'
+import {Card} from "react-bootstrap";
 
 
 function GameCard({editGame, game, removeGames}) {
@@ -25,16 +26,18 @@ function GameCard({editGame, game, removeGames}) {
     return(
         <div>
             
-            <div className="GameCard">
-            {/* <Button type = "submit" variant = "contained" size = "small" onClick={e => handleFilter(game)}>Filter Games:</Button> */}
-            <h2>name:{game.name}</h2>
-            <br></br>
-            <h2>Genre:{game.genre}</h2>
-            <br></br>
-            <h2>Rating:{game.rating}</h2>
+            <div className="card-box">
+            <Card style={{ width: '20rem'}}>
+            <Card.Body>
+            <Card.Title>{game.style}</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">Name: {game.name}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">Genre: {game.genre}</Card.Subtitle>
+                        <Card.Subtitle className="mb-0 text-muted">Rating: {game.rating}</Card.Subtitle>
             <Button type = "submit" variant = "contained" size = "small" onClick={e => handleDelete(game)}>Delete:</Button>
             <Button type = "submit" variant = "contained" size = "small" onClick={e => setEditForm(!editForm)}>Update:</Button>
             {editForm ? <EditForm game={game} editGame={editGame}/> : null}
+            </Card.Body>
+            </Card>
         </div>
         </div>
         

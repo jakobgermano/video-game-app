@@ -2,13 +2,18 @@ class GamesController < ApplicationController
     skip_before_action :authorize
 
     def filter
-        games = Game.order(name: :desc)
-        render json: games
+         games = Game.order(name: :desc)
+         render json: games
+    end
+
+    def show
+        game = Game.find_by(params[:id])
+        render json: game
     end
 
     def index
         games = Game.all
-        render json: games, include: :reviews
+        render json: games
     end
 
     def create
