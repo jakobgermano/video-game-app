@@ -13,11 +13,11 @@ function Reviews({reviews, setReviews}) {
         })
       }, [])
 
+      const allReviews = reviews&&reviews.map((r) => <ReviewCard reviews={reviews} key={r.id} review={r}/> )
 
     return(
         <div>
-            {reviews?.map((r) => 
-            <ReviewCard   key={r.id} review={r} />)}
+           {allReviews}
             
 
         </div>

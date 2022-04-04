@@ -4,7 +4,7 @@ import {useEffect} from 'react'
 import SearchBar from './SearchBar';
 
 
-function Games({games, removeGames, setGames, user}){
+function Games({games, removeGames, setGames, user}){ 
     
     function editGame(game) {
         const edited = games.map(g => {
@@ -25,15 +25,23 @@ function Games({games, removeGames, setGames, user}){
         })
       }, [])
 
+      const nameSorted = () =>{
+        fetch('/filter')
+        .then((r) => r.json())
+        .then((g) => setGames(g));
+
+    };
+
+    const allGames = games&&games.map((g) => <GameCard games={games} editGame={editGame} key={g.id} game={g} removeGames={removeGames} setGames={setGames}/> )
+
     return(
         <>
             <div>
                 
                 <h1>Games you own</h1>
                 <SearchBar  games={games} setGames={setGames}/>
-                {games?.map((g) => 
-                <GameCard games={games} editGame={editGame} key={g.id} game={g} removeGames={removeGames} setGames={setGames}/>
-                )}
+                {allGames}
+                <button onClick={nameSorted}>Sort By Name:</button>
             </div>
         </>
 

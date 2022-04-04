@@ -2,8 +2,9 @@ class GamesController < ApplicationController
     skip_before_action :authorize
 
     def filter
-         games = Game.order(name: :desc)
-         render json: games
+        @current_user = custom_paths
+        games = @current_user.games.by_names
+        render json: games
     end
 
     def show
@@ -27,20 +28,15 @@ class GamesController < ApplicationController
         render json: game
     end
 
-    # def update
-    #     game = Game.find(params[:id])
-    #     if @current_user.id == game.user_id
-    #     game.update(game_params)
-    #     render json: game
-    #     end
-    # end
-
     def destroy
         game = Game.find(params[:id])
         game.destroy
     end
 
     private 
+    def custom_paths
+       User.find(session[:user_id])
+    end
 
     def game_params
         params.require(:game).permit(:name, :rating, :genre, :user_id)

@@ -25,7 +25,7 @@ function SignUpForm({setUser}){
 
     return(
         <>
-            <div>
+            <div className="app">
             <form onSubmit = {handleSubmit}>
                 <label>Username:</label>
                 <input 

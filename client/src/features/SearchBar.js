@@ -16,7 +16,7 @@ function SearchBar({games}) {
         setFilteredData(newFilter);
         }
     };
-
+    
     
 
     return(
@@ -24,7 +24,7 @@ function SearchBar({games}) {
             <form >
                 <button type="submit">Submit</button>
             <div className="searchInputs">
-                <input type="text" onChange={handleSearch}/>
+                <input type="text" placeholder="search..." onChange={handleSearch}/>
             </div>
             </form>
             {filteredData.length != 0 && (

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 
 
-function ReviewForm({addReview}) {
+function ReviewForm({review, addReview}) {
     const [name, setName] = useState("")
 
     function handleSubmit(e) {
@@ -17,7 +17,7 @@ function ReviewForm({addReview}) {
                     name
                 }),
             }).then(r => r.json())
-            .then(g => addReview(g))
+            .then(r => addReview(r.review))
         }
     }
     return(
