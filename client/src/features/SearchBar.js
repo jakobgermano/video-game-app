@@ -1,44 +1,26 @@
-import React, {useState} from 'react';
-
-
-function SearchBar({games}) {
-    const [filteredData, setFilteredData] = useState([])
-
-    const handleSearch = (e) => {
-        const searchWord = e.target.value
-        const newFilter = games.filter((g) => {
-            return g.name.includes(searchWord);
-        });
-
-        if (searchWord === "") {
-            setFilteredData([])
-        } else {
-        setFilteredData(newFilter);
+import React, {useState, useEffect} from 'react';
+    
+    function SearchBar({games}) {
+        const [searchInput, setSearchInput] = useState("")
+        const [submittedSearch, setSubmittedSearch] = useState("")
+        const handleSearch = (e) => {
+            e.preventDefault()
+            setSubmittedSearch(searchInput)
         }
-    };
-    
-    
-
-    return(
-        <div className="search">
-            <form >
-                <button type="submit">Submit</button>
-            <div className="searchInputs">
-                <input type="text" placeholder="search..." onChange={handleSearch}/>
+        const filteredData = games?.filter(game => game.name.toLowerCase().includes(submittedSearch.toLowerCase())).map(g => {
+            if (submittedSearch.length > 0){return <div key={g.id}>{g.name}</div>}
+            }
+        )
+        return(
+            <div className="search">
+                <form >
+                    <button onClick={handleSearch}>Submit</button>
+                <div className="searchInputs">
+                    <input type="text" placeholder="search..." value={searchInput} onChange={e=>setSearchInput(e.target.value)}/>
+                </div>
+                </form>
+                {filteredData}
             </div>
-            </form>
-            {filteredData.length != 0 && (
-            <div className="dataresult">
-                {filteredData.map((g) => {
-                    return <div>{g.name}</div>;
-                })}
-                )
-            </div>
-            )}
-        </div>
-        
-    );
-    
-}
-
-export default SearchBar;
+        );
+    }
+    export default SearchBar;

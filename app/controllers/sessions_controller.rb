@@ -14,8 +14,5 @@ class SessionsController < ApplicationController
     def destroy
         session.delete :driver_id
         head :no_content
-    else
-        render json: { errors: ["You must be logged in to access this content"]}, status: :unauthorized
-      end
     end
 end

@@ -4,7 +4,8 @@ import {useEffect} from 'react'
 import SearchBar from './SearchBar';
 
 
-function Games({games, removeGames, setGames, user}){ 
+
+function Games({ games, removeGames, setGames, user}){ 
     
     function editGame(game) {
         const edited = games.map(g => {
@@ -36,10 +37,11 @@ function Games({games, removeGames, setGames, user}){
 
     return(
         <>
-            <div>
+            <div style={{textAlign: "center", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
                 
                 <h1>Games you own</h1>
                 <SearchBar  games={games} setGames={setGames}/>
+                <br></br>
                 {allGames}
                 <button onClick={nameSorted}>Sort By Name:</button>
             </div>
