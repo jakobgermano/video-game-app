@@ -2,9 +2,11 @@ import React, {useState} from 'react';
 import { Button } from '@mui/material';
 
 
+
 function SignUpForm({setUser}){
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
 
@@ -15,7 +17,7 @@ function SignUpForm({setUser}){
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({user: {username, password, password_confirmation: passwordConfirmation}})
+            body: JSON.stringify({user: {username, password, email, password_confirmation: passwordConfirmation}})
         }).then(r => {
             (r.json().then(user => setUser(user)))
         }).then(
@@ -27,6 +29,14 @@ function SignUpForm({setUser}){
         <>
             <div className="app">
             <form onSubmit = {handleSubmit}>
+                <label>Email:</label>
+                <input
+                type="text"
+                id="email"
+                value={email}
+                onChange = {e => setEmail(e.target.value)}
+                />
+                <br></br>
                 <label>Username:</label>
                 <input 
                 type = "text" 

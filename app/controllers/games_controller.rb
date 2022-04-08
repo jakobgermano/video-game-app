@@ -8,7 +8,7 @@ class GamesController < ApplicationController
     end
 
     def show
-        game = Game.find_by(params[:id])
+        game = Game.find(params[:id])
         render json: game
     end
 

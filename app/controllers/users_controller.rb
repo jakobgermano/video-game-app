@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     skip_before_action :authorize, only: :create
     def index 
         users = User.all
-        render json: users
+        render json: users, include: [:games]
     end
 
     def show
@@ -13,6 +13,7 @@ class UsersController < ApplicationController
         user = User.create(user_params)
         if user.valid?
             session[:user_id] = user.id
+            UserMailer.with(user: @user).welcome_email.deliver_now
             render json: user, status: :created
         else
             render json: {error: user.errors.full_messages}, status: :unprocessable_entity
@@ -22,7 +23,7 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:username, :password)
+        params.require(:user).permit(:username, :password, :email, :password_confirmation)
     end
 
 end

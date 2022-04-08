@@ -18,6 +18,7 @@ function Games({ games, removeGames, setGames, user}){
        
     }
 
+
     useEffect(()=> {
         fetch(`users/${user.id}`)
         .then((r) => r.json())
@@ -25,6 +26,7 @@ function Games({ games, removeGames, setGames, user}){
             setGames(g.games)
         })
       }, [])
+      
 
       const nameSorted = () =>{
         fetch('/filter')
@@ -34,11 +36,10 @@ function Games({ games, removeGames, setGames, user}){
     };
 
     const allGames = games&&games.map((g) => <GameCard games={games} editGame={editGame} key={g.id} game={g} removeGames={removeGames} setGames={setGames}/> )
-
+    
     return(
         <>
             <div style={{textAlign: "center", display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
-                
                 <h1>Games you own</h1>
                 <SearchBar  games={games} setGames={setGames}/>
                 <br></br>

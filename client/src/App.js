@@ -7,6 +7,7 @@ import GameForm from './features/GameForm'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from './features/NavBar';
 import GameCounter from './features/GameCounter';
+// import GameDetail from './features/GameDetail'
 import { Button } from '@mui/material';
 
 
@@ -60,6 +61,8 @@ function App() {
       <Fragment>
       <NavBar/>
       <Routes>
+        {/* <Route exact path="/GameDetail" element={<GameDetail games={games}/>}>
+        </Route> */}
       <Route exact path="/" element={<Games removeGames={removeGames} games={games} user={user} setGames={setGames}/>}>
       </Route>
       <Route exact path="/GameForm" element={<GameForm addGame={addGame} user={user}/>}>
