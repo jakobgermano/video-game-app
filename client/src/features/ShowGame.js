@@ -11,11 +11,6 @@ function ShowGame({game, filterGame}) {
 
     return(
         <div>
-            {game.name}
-            <br></br>
-            {game.genre}
-            <br></br>
-            {game.rating}
         </div>
     )
 

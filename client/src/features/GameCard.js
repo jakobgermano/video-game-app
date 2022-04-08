@@ -7,7 +7,7 @@ import ShowGame from './ShowGame'
 
 
 
-function GameCard({editGame, game, setGames, games, removeGames}) {
+function GameCard({editGame, game, setGames, removeGames}) {
     const [editForm, setEditForm] = useState(false)
     const [showGame, setShowGame] = useState("")
     
