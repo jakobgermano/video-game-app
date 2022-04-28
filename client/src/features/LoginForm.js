@@ -1,9 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import SignUpForm from "./SignupForm";
+import {Button} from '@mui/material'
 
 function LoginForm({setUser}){
-    //fetch to /login route, method POST to create a user session existing on login
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
@@ -58,7 +58,7 @@ function LoginForm({setUser}){
                     onChange = {e => setPassword(e.target.value)}/>
                     </div>
                     <div className="loginButton">
-                    <button type = "submit" >Login</button>
+                    <Button type = "submit" >Login</Button>
                     </div>
                 </form>
                 <h4>Need to create an account?</h4>

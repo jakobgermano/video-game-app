@@ -14,7 +14,7 @@ function GameCard({editGame, game, setGames, removeGames}) {
     
 
 
-    //fetch request to delete game
+    
     function handleDelete(game) {
         fetch(`/games/${game.id}`, 
      {method: "DELETE"}).then(g => {

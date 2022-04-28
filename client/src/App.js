@@ -1,4 +1,4 @@
-import './index.css';
+import './App.css';
 import React, { Fragment } from 'react';
 import Games from './features/Games';
 import LoginForm from './features/LoginForm';
@@ -7,7 +7,6 @@ import GameForm from './features/GameForm'
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NavBar from './features/NavBar';
 import GameCounter from './features/GameCounter';
-// import GameDetail from './features/GameDetail'
 import { Button } from '@mui/material';
 
 
@@ -19,7 +18,6 @@ function App() {
 
   
   
-  //keeps person signed in on refresh
   useEffect(() => {
     fetch('/me').then((r) => {
       if (r.ok) {
@@ -30,7 +28,6 @@ function App() {
 
 
 
-  //fetch request for loging out 
   function handleLogoutClick(){
     fetch('/logout', {
       method: 'DELETE'
@@ -38,20 +35,19 @@ function App() {
       .then(r => setUser(null))
   }
 
-  //function for removing games 
   function removeGames(game) {
     setGames((games) => games.filter(g => g.id !== game.id))
   }
 
   
 
-//function for adding games
+
   function addGame(game) {
     setGames([...games, game])
 
   }
 
-  //renders login screen if user is not logged in 
+ 
   if (!user) return <LoginForm setUser = {setUser}/>
 
   return (
@@ -61,8 +57,6 @@ function App() {
       <Fragment>
       <NavBar/>
       <Routes>
-        {/* <Route exact path="/GameDetail" element={<GameDetail games={games}/>}>
-        </Route> */}
       <Route exact path="/" element={<Games removeGames={removeGames} games={games} user={user} setGames={setGames}/>}>
       </Route>
       <Route exact path="/GameForm" element={<GameForm addGame={addGame} user={user}/>}>
