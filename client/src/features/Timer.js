@@ -1,5 +1,10 @@
 function Timer() {
+    
+
     return(
-        <div></div>
+        <div>
+            <button onClick={}>GO</button>
+            <button onClick={}>STOP</button>
+        </div>
     )
 }
